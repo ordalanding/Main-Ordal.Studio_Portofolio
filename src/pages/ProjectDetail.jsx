@@ -23,7 +23,7 @@ export default function ProjectDetail() {
         .select('*')
         .eq('id', id)
         .single();
-      
+
       if (data) {
         setProject(data);
       } else {
@@ -31,7 +31,7 @@ export default function ProjectDetail() {
       }
       setLoading(false);
     }
-    
+
     fetchProject();
   }, [id]);
 
@@ -74,21 +74,21 @@ export default function ProjectDetail() {
   const isSocialMedia = project?.category?.toUpperCase().includes('SOCIAL MEDIA');
   const isWebsite = project?.category?.toUpperCase() === 'WEBSITE DEVELOPMENT';
   const isPhotoProduct = project?.category?.toUpperCase() === 'PHOTO & PRODUCT DESIGN';
-  
+
   const videoUrls = project.video_url ? project.video_url.split(',').map(u => u.trim()) : [];
   const videoEmbed = (!isSocialMedia && !isWebsite && !isPhotoProduct) ? getEmbedUrl(videoUrls[0]) : null;
 
   const getPdfEmbed = (url) => {
     if (!url) return null;
     if (url.includes('drive.google.com/file/d/')) {
-       return url.replace(/\/view.*$/, '/preview');
+      return url.replace(/\/view.*$/, '/preview');
     }
     return url;
   };
 
   const getImageUrl = (project) => {
     const url = project.portfolio_image_url || project.image_url;
-    if (!url || url === 'undefined') return '/Ordalogo.png';
+    if (!url || url === 'undefined' || url === 'null') return '/Ordalogo.png';
     return url;
   };
 
@@ -98,18 +98,18 @@ export default function ProjectDetail() {
       <section className="detail-hero">
         <div className="detail-hero-bg" style={{ backgroundImage: `url("${getImageUrl(project)}")` }}></div>
         <div className="detail-hero-overlay"></div>
-        
+
         <div className="container detail-hero-content">
           <div className="hero-technical-data">
-            <span className="data-item">PROJECT_ID: {project.id.slice(0,8).toUpperCase()}</span>
+            <span className="data-item">PROJECT_ID: {project.id.slice(0, 8).toUpperCase()}</span>
             <span className="data-item">STATUS: COMPLETED</span>
             <span className="data-item">LOC: 0.000, 0.000</span>
           </div>
-          
+
           <Link to="/portfolio" className="back-link">
             <ArrowLeft size={14} /> BACK_TO_DATABASE
           </Link>
-          
+
           <div className="hero-text-block">
             <div className="category-line">
               <div className="line-accent"></div>
@@ -179,43 +179,43 @@ export default function ProjectDetail() {
                 <div className="status-blinker"></div>
                 <h3 className="block-title">
                   {isWebsite ? <><ExternalLink size={14} /> DEPLOYED_URL_PREVIEW</> :
-                   isPhotoProduct ? <><ExternalLink size={14} /> PDF_ASSET_PREVIEW</> :
-                   <><Play size={14} fill="currentColor" /> RECON_FOOTAGE_STREAM</>}
+                    isPhotoProduct ? <><ExternalLink size={14} /> PDF_ASSET_PREVIEW</> :
+                      <><Play size={14} fill="currentColor" /> RECON_FOOTAGE_STREAM</>}
                 </h3>
                 <div className="header-technical">CH_01 // SIGNAL: STABLE // FULL_WIDTH</div>
               </div>
-              
+
               <div className="video-frame" style={isWebsite ? { aspectRatio: '16/9' } : {}}>
                 <div className="frame-corners">
                   <div className="c-tl"></div><div className="c-tr"></div>
                   <div className="c-bl"></div><div className="c-br"></div>
                 </div>
-                
+
                 {isWebsite ? (
                   <div className="website-preview-container" style={{ height: '100%', minHeight: '600px' }}>
-                    <iframe 
-                      src={project.video_url} 
-                      title="Website Preview" 
+                    <iframe
+                      src={project.video_url}
+                      title="Website Preview"
                       className="website-iframe"
                       sandbox="allow-same-origin allow-scripts"
                     ></iframe>
                   </div>
                 ) : isPhotoProduct ? (
                   <div className="pdf-preview-container" style={{ height: '85vh', minHeight: '800px' }}>
-                    <iframe 
-                      src={getPdfEmbed(project.video_url)} 
-                      title="PDF Preview" 
+                    <iframe
+                      src={getPdfEmbed(project.video_url)}
+                      title="PDF Preview"
                       className="pdf-iframe"
                       allow="autoplay"
                     ></iframe>
                   </div>
                 ) : videoEmbed ? (
                   <div className="video-container">
-                    <iframe 
-                      src={videoEmbed} 
-                      title="Project Video" 
-                      frameBorder="0" 
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    <iframe
+                      src={videoEmbed}
+                      title="Project Video"
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                       allowFullScreen
                     ></iframe>
                   </div>
@@ -261,13 +261,13 @@ export default function ProjectDetail() {
                       </h3>
                       <div className="header-technical">CH_01 // SIGNAL: STABLE</div>
                     </div>
-                    
+
                     <div className="video-frame">
                       <div className="frame-corners">
                         <div className="c-tl"></div><div className="c-tr"></div>
                         <div className="c-bl"></div><div className="c-br"></div>
                       </div>
-                      
+
                       <div className="reels-swiper-container">
                         <Swiper
                           effect={'cards'}
@@ -287,11 +287,11 @@ export default function ProjectDetail() {
                             <SwiperSlide key={idx} className="reel-slide">
                               <div className={`reel-card ${activeSlide === idx ? 'active' : ''}`}>
                                 {activeSlide === idx ? (
-                                  <iframe 
-                                    src={getInstagramEmbed(url)} 
+                                  <iframe
+                                    src={getInstagramEmbed(url)}
                                     title={`Reel ${idx}`}
-                                    frameBorder="0" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                    frameBorder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                     allowFullScreen
                                   ></iframe>
                                 ) : (
@@ -339,7 +339,7 @@ export default function ProjectDetail() {
                 <h3 className="block-title">CHALLENGE_OBJ</h3>
               </div>
               <p className="description-text">{project.description || 'No brief provided for this operation.'}</p>
-              
+
               <div className="tactical-meta-list">
                 <div className="meta-item">
                   <Calendar size={12} />
@@ -363,9 +363,9 @@ export default function ProjectDetail() {
           <div className="extended-gallery-section full-width">
             {project.gallery_urls.length === 1 ? (
               <div className="single-gallery-view container">
-                <img 
-                  src={project.gallery_urls[0]} 
-                  alt="Gallery content" 
+                <img
+                  src={getImageUrl({ image_url: project.gallery_urls[0] })}
+                  alt="Gallery content"
                   className="single-gallery-image"
                   onClick={() => setLightboxImg(project.gallery_urls[0])}
                 />
@@ -374,10 +374,10 @@ export default function ProjectDetail() {
               <div className="marquee-wrapper">
                 <div className="marquee-track">
                   {/* Track 1: First Row - Duplicated to create endless loop */}
-                  {(project.gallery_urls || []).filter(url => url && url !== 'undefined').concat((project.gallery_urls || []).filter(url => url && url !== 'undefined')).concat((project.gallery_urls || []).filter(url => url && url !== 'undefined')).map((url, index) => (
-                    <div 
-                      key={`t1-${index}`} 
-                      className="marquee-item" 
+                  {[1, 2, 3].flatMap(() => (project.gallery_urls || []).filter(url => url && url !== 'undefined' && url !== 'null')).map((url, index) => (
+                    <div
+                      key={`t1-${index}`}
+                      className="marquee-item"
                       style={{ backgroundImage: `url(${url})` }}
                       onClick={() => setLightboxImg(url)}
                     >
@@ -385,13 +385,13 @@ export default function ProjectDetail() {
                     </div>
                   ))}
                 </div>
-                
+
                 {/* Optional Track 2 (Offset or slightly faster) if there are many images */}
                 <div className="marquee-track track-offset">
-                  {[(...project.gallery_urls || []).filter(url => url && url !== 'undefined'), (...project.gallery_urls || []).filter(url => url && url !== 'undefined'), (...project.gallery_urls || []).filter(url => url && url !== 'undefined')].flat().reverse().map((url, index) => (
-                    <div 
-                      key={`t2-${index}`} 
-                      className="marquee-item" 
+                  {[1, 2, 3].flatMap(() => (project.gallery_urls || []).filter(url => url && url !== 'undefined' && url !== 'null')).reverse().map((url, index) => (
+                    <div
+                      key={`t2-${index}`}
+                      className="marquee-item"
                       style={{ backgroundImage: `url(${url})` }}
                       onClick={() => setLightboxImg(url)}
                     >
@@ -404,13 +404,13 @@ export default function ProjectDetail() {
           </div>
         )}
       </div>
-      
+
       {/* FOOTER CALL TO ACTION */}
       <section className="detail-cta">
         <div className="container">
           <h2>READY TO INITIATE YOUR OWN PROTOCOL?</h2>
           <Link to="/contact" className="tactical-btn">
-            ESTABLISH_CONNECTION <ArrowLeft size={16} style={{transform: 'rotate(135deg)'}} />
+            ESTABLISH_CONNECTION <ArrowLeft size={16} style={{ transform: 'rotate(135deg)' }} />
           </Link>
         </div>
       </section>

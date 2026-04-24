@@ -18,7 +18,7 @@ export default function Portfolio() {
 
   const getImageUrl = (project) => {
     const url = project.portfolio_image_url || project.image_url;
-    if (!url || url === 'undefined') return '/Ordalogo.png';
+    if (!url || url === 'undefined' || url === 'null') return '/Ordalogo.png';
     return url;
   };
 

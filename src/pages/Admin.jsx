@@ -557,7 +557,7 @@ export default function Admin() {
               <div className="project-list">
                 {projects.map(project => (
                   <div key={project.id} className={`admin-project-card ${editingId === project.id ? 'editing' : ''}`}>
-                    <div className="proj-img" style={{ backgroundImage: `url(${project.image_url})` }}></div>
+                    <div className="proj-img" style={{ backgroundImage: `url("${(project.image_url && project.image_url !== 'undefined' && project.image_url !== 'null') ? project.image_url : '/Ordalogo.png'}")` }}></div>
                     <div className="proj-info">
                       <h4>{project.title}</h4>
                       <p>{project.client} // {project.category}</p>

@@ -44,9 +44,15 @@ function WorkCard({ project }) {
   const navigate = useNavigate();
 
   const getImageUrl = (project) => {
+    if (!project) return '/Ordalogo.png';
     const url = project.portfolio_image_url || project.image_url;
-    if (!url || url === 'undefined') return '/Ordalogo.png';
+    if (!url || url === 'undefined' || url === '' || url === 'null') return '/Ordalogo.png';
     return url;
+  };
+
+  const getTestimonialImageUrl = (test) => {
+    if (!test || !test.image_url || test.image_url === 'undefined' || test.image_url === '' || test.image_url === 'null') return '/Ordalogo.png';
+    return test.image_url;
   };
 
   const truncateText = (text, limit = 100) => {
@@ -68,7 +74,7 @@ function WorkCard({ project }) {
     >
       <div className="card-inner">
         <div className="card-front">
-          <div className="work-image" style={{ backgroundImage: `url(${getImageUrl(project)})` }}></div>
+          <div className="work-image" style={{ backgroundImage: `url("${getImageUrl(project)}")` }}></div>
           <div className="work-category-tag">{project.category}</div>
           <div className="work-info">
             <h6>{project.client}</h6>
@@ -321,17 +327,14 @@ export default function Home() {
       {/* CLIENTS MARKQUEE */}
       <section className="our-clients-section reveal-on-scroll" ref={addToRefs}>
         <h2 className="section-title center" style={{ marginBottom: "4rem" }}>OUR <span className="text-outline">CLIENT</span></h2>
-        <div className="marquee">
-          <div className="marquee-content">
-            {clientLogos.map((logo, idx) => (
-              <img key={`marquee-1-${idx}`} src={logo} alt={`Client Logo ${idx}`}
-                className={`client-logo ${logo === reboundLogo ? 'rebound-logo' : ''}`} />
+        <div className="marquee mt-4">
+          <div className="marquee-track track-reverse">
+            {clientLogos.filter(Boolean).slice().reverse().map((logo, idx) => (
+              <img key={`marquee-2-${idx}`} src={logo} alt={`Client Logo ${idx}`} className={`client-logo ${logo === reboundLogo ? 'rebound-logo' : ''}`} />
             ))}
-          </div>
-          <div className="marquee-content" aria-hidden="true">
-            {clientLogos.map((logo, idx) => (
-              <img key={`marquee-2-${idx}`} src={logo} alt={`Client Logo ${idx}`}
-                className={`client-logo ${logo === reboundLogo ? 'rebound-logo' : ''}`} />
+            {/* Duplicate for infinite effect */}
+            {clientLogos.filter(Boolean).slice().reverse().map((logo, idx) => (
+              <img key={`marquee-2-dup-${idx}`} src={logo} alt={`Client Logo ${idx}`} className={`client-logo ${logo === reboundLogo ? 'rebound-logo' : ''}`} />
             ))}
           </div>
         </div>
@@ -426,7 +429,33 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 5. START THE TRANSMISSION (CONTACT) */}
+      {/* 5. TESTIMONIALS */}
+      <section className="testimonials-section container">
+        <div className="directory-label">RECORDS / CLIENT_FEEDBACK / V1.0</div>
+        <h2 className="section-title">TACTICAL <span className="text-outline">FEEDBACK</span></h2>
+        
+        <div className="testimonials-grid">
+          {[
+            { id: 1, name: 'Aswin Gani', company: 'Founder of GVM', content: 'Ordal transformed our digital strategy. Their tactical approach to content and design gave us a significant edge in the market.', image_url: aswinlogo },
+            { id: 2, name: 'Madam Ketty', company: 'Owner of Madam Ketty', content: 'The website they built is a masterpiece of precision. Our conversion rates have skyrocketed since deployment.', image_url: madamkettylogo },
+            { id: 3, name: 'Rebound Team', company: 'Lifestyle Brand', content: 'Aggressive, fast, and visually stunning. Ordal is the only agency that understands the neon-noir aesthetic perfectly.', image_url: reboundLogo }
+          ].map((test, i) => (
+            <div key={test.id} className="testimonial-card reveal-on-scroll" ref={addToRefs} style={{ transitionDelay: `${i * 100}ms` }}>
+              <div className="test-header">
+                <div className="author-avatar" style={{ backgroundImage: `url("${test.image_url || '/Ordalogo.png'}")` }}></div>
+                <div className="author-info">
+                  <h4>{test.name}</h4>
+                  <label>{test.company}</label>
+                </div>
+              </div>
+              <p className="test-content">"{test.content}"</p>
+              <div className="test-footer">STATUS: VERIFIED_SIGNAL</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* 6. START THE TRANSMISSION (CONTACT) */}
       <section className="contact-section container">
         <div className="directory-label">OUTBOUND / SIGNAL_START</div>
         <div className="contact-grid">
