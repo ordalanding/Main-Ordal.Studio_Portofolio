@@ -1,0 +1,119 @@
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 50;
+  background-color: #000000;
+  border-top: 2px solid #5a45ff; /* Match the subtle blue top line in reference */
+  border-bottom: 1px solid color-mix(in srgb, var(--primary) 30%, transparent);
+  box-shadow: 0 20px 50px -10px color-mix(in srgb, var(--primary) 25%, transparent);
+}
+
+.nav-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 1rem 3rem;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+}
+
+.brand {
+  font-family: var(--font-body);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--primary);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.desktop-nav {
+  display: none;
+  justify-content: center;
+  gap: 3rem;
+}
+
+.desktop-action {
+  display: none;
+  justify-content: flex-end;
+}
+
+@media(min-width: 768px){
+  .desktop-nav, .desktop-action {
+    display: flex;
+  }
+  .mobile-toggle {
+    display: none;
+  }
+}
+
+.nav-link {
+  color: var(--on-surface-variant);
+  font-size: 0.85rem;
+  font-weight: 500;
+  font-family: var(--font-body);
+  transition: color 0.2s, border-color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 2px solid transparent;
+}
+
+.nav-link:hover, .nav-link.active {
+  color: var(--primary);
+  border-bottom: 2px solid var(--primary);
+}
+
+.btn-nav-primary {
+  background-color: #7b0d0d;
+  color: white;
+  border: none;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  padding: 0.6rem 1.5rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 0;
+  transition: background-color 0.3s;
+}
+
+.btn-nav-primary:hover {
+  background-color: var(--primary);
+}
+
+.mobile-toggle {
+  background: transparent;
+  color: var(--on-surface);
+  padding: 0.5rem;
+  justify-self: flex-end;
+}
+
+.mobile-nav {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  padding: 1rem 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--outline-variant) 10%, transparent);
+}
+
+.mobile-link {
+  color: var(--on-surface-variant);
+  font-size: 1.125rem;
+  letter-spacing: 0.05em;
+  font-family: var(--font-display);
+}
+
+.mobile-link.active {
+  color: var(--primary);
+}
+
+.w-full { width: 100%; }
+.mt-4 { margin-top: 1rem; }

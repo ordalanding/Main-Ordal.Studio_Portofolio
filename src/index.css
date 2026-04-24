@@ -1,0 +1,217 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Tonal Surface Architecture (Ordal Edge) */
+  --background: #1c100f;
+  --surface-container-lowest: #160b0a;
+  --surface-container-low: #251817;
+  --surface-container: #291c1b;
+  --surface-container-high: #342725;
+  --surface-container-highest: #403130;
+  --surface-variant: #403130;
+
+  /* Primary Palette (Dark Red / Crimson) */
+  --primary: #ffb4a7;
+  --primary-container: #fc7059;
+  --on-primary: #670500;
+
+  /* Secondary Palette (Neutral White/Grey) */
+  --secondary: #ccc5c4;
+  --secondary-container: #4c4848;
+  --on-secondary-container: #beb7b6;
+  
+  /* Text */
+  --on-surface: #f5ddda;
+  --on-surface-variant: #e0bfbb;
+
+  /* Lines */
+  --outline: #a78a86;
+  --outline-variant: #58413e;
+
+  /* Typography */
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body: 'Manrope', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  background-color: var(--background);
+  color: var(--on-surface-variant);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  color: var(--on-surface);
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+}
+
+h2 {
+  font-size: clamp(2rem, 3vw, 2.5rem);
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Glassmorphism utility */
+.glass {
+  background-color: color-mix(in srgb, var(--surface-variant) 40%, transparent);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* Base button styles */
+button {
+  font-family: var(--font-body);
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+/* --- GLOBAL SCROLL REVEAL ANIMATIONS --- */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: transform, opacity;
+}
+
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0) translateX(0);
+}
+
+.reveal-left {
+  transform: translateX(-60px);
+}
+
+.reveal-right {
+  transform: translateX(60px);
+}
+
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary), var(--primary-container));
+  color: var(--on-primary);
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.25rem;
+}
+
+.btn-primary:hover {
+  filter: brightness(1.1);
+  box-shadow: 0 0 20px color-mix(in srgb, var(--primary-container) 40%, transparent);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--secondary);
+  border: 1px solid color-mix(in srgb, var(--outline-variant) 20%, transparent);
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.25rem;
+}
+
+.btn-secondary:hover {
+  background: var(--secondary-container);
+  color: var(--on-surface);
+  border-color: transparent;
+}
+
+/* TACTICAL FORM SYSTEM */
+.tactical-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 640px) {
+  .tactical-form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.tag-selection-group {
+  margin-bottom: 2rem;
+}
+
+.tag-label {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--on-surface-variant);
+  margin-bottom: 1rem;
+  letter-spacing: 0.05em;
+}
+
+.tag-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.tag-item {
+  padding: 0.6rem 1.2rem;
+  border: 1px solid var(--outline-variant);
+  border-radius: 4px;
+  background: transparent;
+  color: var(--on-surface);
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  white-space: nowrap;
+}
+
+.tag-item:hover {
+  border-color: var(--primary);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.tag-item.active {
+  background: var(--on-surface);
+  color: var(--surface);
+  border-color: var(--on-surface);
+}
+
+.tactical-submit-btn {
+  background: var(--on-surface);
+  color: var(--surface);
+  border: none;
+  padding: 1rem 2.5rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  width: fit-content;
+}
+
+.tactical-submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2);
+}

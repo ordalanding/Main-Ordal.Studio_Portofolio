@@ -1,0 +1,417 @@
+.admin-portal {
+  min-height: 100vh;
+  background-color: var(--surface);
+  color: var(--on-surface);
+  padding-bottom: 5rem;
+}
+
+.admin-nav {
+  height: 80px;
+  background: var(--surface-container-low);
+  border-bottom: 1px solid var(--outline-variant);
+  display: flex;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.admin-logo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-family: monospace;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.logout-btn {
+  background: rgba(255, 46, 46, 0.1);
+  color: var(--primary);
+  border: 1px solid var(--primary);
+  padding: 0.6rem 1.2rem;
+  font-family: monospace;
+  font-size: 0.75rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+  background: var(--primary);
+  color: white;
+}
+
+.admin-content {
+  margin-top: 4rem;
+}
+
+.admin-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+}
+
+@media (max-width: 1200px) {
+  .admin-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.admin-section {
+  background: var(--surface-container-lowest);
+  border: 1px solid var(--outline-variant);
+  padding: 3rem;
+}
+
+.section-header {
+  margin-bottom: 3rem;
+}
+
+.section-header h3 {
+  font-size: 1.5rem;
+  font-family: var(--font-display);
+  margin: 0.5rem 0;
+}
+
+.section-header p {
+  font-size: 0.85rem;
+  color: var(--on-surface-variant);
+  opacity: 0.6;
+}
+
+.tactical-form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.admin-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.admin-input-group label {
+  font-family: monospace;
+  font-size: 0.65rem;
+  color: var(--on-surface-variant);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  opacity: 0.7;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.admin-input-group input,
+.admin-input-group textarea {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--outline-variant);
+  padding: 1rem;
+  color: white;
+  font-family: var(--font-body);
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.admin-input-group input:focus,
+.admin-input-group textarea:focus {
+  border-color: var(--primary);
+  background: rgba(255, 46, 46, 0.03);
+}
+
+.submit-btn {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 1.25rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+}
+
+.submit-btn:hover {
+  background: #ff4d4d;
+  box-shadow: 0 0 20px rgba(255, 46, 46, 0.3);
+}
+
+.project-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.admin-project-card {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  background: var(--surface-container-low);
+  border: 1px solid var(--outline-variant);
+  transition: all 0.3s ease;
+}
+
+.admin-project-card.editing {
+  border-color: var(--primary);
+  background: rgba(255, 46, 46, 0.05);
+  box-shadow: inset 0 0 15px rgba(255, 46, 46, 0.1);
+}
+
+.proj-img {
+  width: 80px;
+  height: 80px;
+  background-size: cover;
+  background-position: center;
+  border: 1px solid var(--outline-variant);
+  flex-shrink: 0;
+}
+
+.proj-info {
+  flex: 1;
+}
+
+.proj-info h4 {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.proj-info p {
+  font-size: 0.8rem;
+  color: var(--on-surface-variant);
+  font-family: monospace;
+}
+
+.admin-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.edit-btn-action, .delete-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--outline-variant);
+  color: white;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.edit-btn-action:hover {
+  background: var(--primary);
+  border-color: var(--primary);
+}
+
+.delete-btn:hover {
+  background: #ff4b2b;
+  border-color: #ff4b2b;
+}
+
+.cancel-edit-btn {
+  background: rgba(255, 46, 46, 0.1);
+  border: 1px solid var(--primary);
+  color: var(--primary);
+  padding: 0.5rem 0.75rem;
+  font-size: 0.7rem;
+  font-family: monospace;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cancel-edit-btn:hover {
+  background: var(--primary);
+  color: white;
+}
+
+.admin-loading {
+  font-family: monospace;
+  font-size: 0.8rem;
+  color: var(--on-surface-variant);
+  padding: 4rem;
+  text-align: center;
+}
+
+/* --- ADVANCED FORGE STYLES --- */
+
+.select-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.select-wrapper select {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--outline-variant);
+  padding: 1rem 2.5rem 1rem 1rem;
+  color: white;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  outline: none;
+  cursor: pointer;
+  appearance: none; /* Custom arrow added below */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23ff2e2e' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+}
+
+.select-wrapper select option {
+  background-color: #0f0f0f;
+  color: white;
+  padding: 10px;
+}
+
+.select-wrapper select:focus {
+  border-color: var(--primary);
+  background-color: rgba(255, 46, 46, 0.05);
+  box-shadow: 0 0 10px rgba(255, 46, 46, 0.1);
+}
+
+.media-forge-container {
+  border: 1px solid var(--outline-variant);
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin: 1rem 0;
+}
+
+.forge-subtitle {
+  font-family: monospace;
+  font-size: 0.8rem;
+  color: var(--primary);
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5rem;
+}
+
+.dropzone {
+  border: 1px dashed var(--outline-variant);
+  background: rgba(255, 255, 255, 0.01);
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.dropzone:hover {
+  border-color: var(--primary);
+  background: rgba(255, 46, 46, 0.02);
+}
+
+.dropzone-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--on-surface-variant);
+  opacity: 0.5;
+  font-family: monospace;
+  font-size: 0.7rem;
+}
+
+.dropzone-preview {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+}
+
+.preview-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-family: monospace;
+  font-size: 0.75rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.dropzone:hover .preview-overlay {
+  opacity: 1;
+}
+
+.gallery-previews {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.g-preview {
+  aspect-ratio: 1;
+  background-size: cover;
+  background-position: center;
+  border: 1px solid var(--outline-variant);
+  position: relative;
+  overflow: hidden;
+}
+
+.remove-g-item {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  background: rgba(255, 46, 46, 0.9);
+  border: none;
+  color: white;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.g-preview:hover .remove-g-item {
+  opacity: 1;
+}
+
+.upload-status {
+  font-family: monospace;
+  font-size: 0.75rem;
+  color: var(--primary);
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.5; }
+  50% { opacity: 1; }
+  100% { opacity: 0.5; }
+}
