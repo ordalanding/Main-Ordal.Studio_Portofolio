@@ -62,7 +62,7 @@ function WorkCard({ project }) {
     >
       <div className="card-inner">
         <div className="card-front">
-          <div className="work-image" style={{ backgroundImage: `url(${project.image_url})` }}></div>
+          <div className="work-image" style={{ backgroundImage: `url(${project.image_url || '/Ordalogo.png'})` }}></div>
           <div className="work-category-tag">{project.category}</div>
           <div className="work-info">
             <h6>{project.client}</h6>
@@ -160,7 +160,6 @@ export default function Home() {
 
   // Scroll Reveal Logic
   const scrollRefs = useRef([]);
-  scrollRefs.current = [];
 
   const addToRefs = (el) => {
     if (el && !scrollRefs.current.includes(el)) {
@@ -180,14 +179,11 @@ export default function Home() {
       { threshold: 0.1 }
     );
 
-    scrollRefs.current.forEach((ref) => {
-      if (ref) observer.observe(ref);
-    });
+    const currentRefs = scrollRefs.current.filter(Boolean);
+    currentRefs.forEach((ref) => observer.observe(ref));
 
     return () => {
-      scrollRefs.current.forEach((ref) => {
-        if (ref) observer.unobserve(ref);
-      });
+      currentRefs.forEach((ref) => observer.unobserve(ref));
     };
   }, [projects]);
 

@@ -17,7 +17,6 @@ export default function Portfolio() {
   const projectsPerPage = 4;
 
   const scrollRefs = useRef([]);
-  scrollRefs.current = [];
 
   const addToRefs = (el) => {
     if (el && !scrollRefs.current.includes(el)) {
@@ -62,16 +61,14 @@ export default function Portfolio() {
       { threshold: 0.1 }
     );
 
-    scrollRefs.current.forEach((ref) => {
-      if (ref) observer.observe(ref);
-    });
+    // Filter null values and observe
+    const currentRefs = scrollRefs.current.filter(Boolean);
+    currentRefs.forEach((ref) => observer.observe(ref));
 
     return () => {
-      scrollRefs.current.forEach((ref) => {
-        if (ref) observer.unobserve(ref);
-      });
+      currentRefs.forEach((ref) => observer.unobserve(ref));
     };
-  }, [projects, testimonials, loading, currentPage]);
+  }, [loading, projects, testimonials, currentPage]);
 
   const faqs = [
     { q: "How do you handle project timelines?", a: "We operate on tactical sprint cycles. Every project has a clear mission timeline with defined execution phases to ensure high-velocity delivery without friction." },
@@ -151,7 +148,7 @@ export default function Portfolio() {
                 style={{ transitionDelay: `${(i % 2) * 200}ms` }}
               >
                 <div className="project-image-wrapper">
-                  <div className="project-image" style={{ backgroundImage: `url(${project.portfolio_image_url || project.image_url})` }}></div>
+                  <div className="project-image" style={{ backgroundImage: `url(${project.portfolio_image_url || project.image_url || '/Ordalogo.png'})` }}></div>
                   <div className="project-btn-top">
                     <ArrowUpRight size={20} />
                   </div>
@@ -214,7 +211,7 @@ export default function Portfolio() {
                     </div>
                   </div>
                   <div className="featured-visual reveal-on-scroll reveal-right" ref={addToRefs}>
-                    <div className="visual-image" style={{ backgroundImage: `url("${story.image_url || '/tactical_architect_testimonial_1777046153917.png'}")` }}></div>
+                    <div className="visual-image" style={{ backgroundImage: `url("${story.image_url || '/Ordalogo.png'}")` }}></div>
                     <div className="visual-overlay"></div>
                   </div>
                 </div>
