@@ -86,11 +86,17 @@ export default function ProjectDetail() {
     return url;
   };
 
+  const getImageUrl = (project) => {
+    const url = project.portfolio_image_url || project.image_url;
+    if (!url || url === 'undefined') return '/Ordalogo.png';
+    return url;
+  };
+
   return (
     <div className="project-detail-page">
       {/* HERO SECTION */}
       <section className="detail-hero">
-        <div className="detail-hero-bg" style={{ backgroundImage: `url(${project.portfolio_image_url || project.image_url})` }}></div>
+        <div className="detail-hero-bg" style={{ backgroundImage: `url(${getImageUrl(project)})` }}></div>
         <div className="detail-hero-overlay"></div>
         
         <div className="container detail-hero-content">

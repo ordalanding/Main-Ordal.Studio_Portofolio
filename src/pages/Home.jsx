@@ -43,6 +43,12 @@ function WorkCard({ project }) {
   const [isFlipped, setIsFlipped] = useState(false);
   const navigate = useNavigate();
 
+  const getImageUrl = (project) => {
+    const url = project.portfolio_image_url || project.image_url;
+    if (!url || url === 'undefined') return '/Ordalogo.png';
+    return url;
+  };
+
   const truncateText = (text, limit = 100) => {
     if (!text) return "Deploying elite digital infrastructure to dominate market segments.";
     return text.length > limit ? text.substring(0, limit) + "..." : text;
@@ -62,7 +68,7 @@ function WorkCard({ project }) {
     >
       <div className="card-inner">
         <div className="card-front">
-          <div className="work-image" style={{ backgroundImage: `url(${project.image_url || '/Ordalogo.png'})` }}></div>
+          <div className="work-image" style={{ backgroundImage: `url(${getImageUrl(project)})` }}></div>
           <div className="work-category-tag">{project.category}</div>
           <div className="work-info">
             <h6>{project.client}</h6>

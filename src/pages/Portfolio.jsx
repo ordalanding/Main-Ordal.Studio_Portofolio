@@ -16,6 +16,12 @@ export default function Portfolio() {
   const [currentPage, setCurrentPage] = useState(1);
   const projectsPerPage = 4;
 
+  const getImageUrl = (project) => {
+    const url = project.portfolio_image_url || project.image_url;
+    if (!url || url === 'undefined') return '/Ordalogo.png';
+    return url;
+  };
+
   const scrollRefs = useRef([]);
 
   const addToRefs = (el) => {
@@ -148,7 +154,7 @@ export default function Portfolio() {
                 style={{ transitionDelay: `${(i % 2) * 200}ms` }}
               >
                 <div className="project-image-wrapper">
-                  <div className="project-image" style={{ backgroundImage: `url(${project.portfolio_image_url || project.image_url || '/Ordalogo.png'})` }}></div>
+                  <div className="project-image" style={{ backgroundImage: `url(${getImageUrl(project)})` }}></div>
                   <div className="project-btn-top">
                     <ArrowUpRight size={20} />
                   </div>
@@ -211,7 +217,7 @@ export default function Portfolio() {
                     </div>
                   </div>
                   <div className="featured-visual reveal-on-scroll reveal-right" ref={addToRefs}>
-                    <div className="visual-image" style={{ backgroundImage: `url("${story.image_url || '/Ordalogo.png'}")` }}></div>
+                    <div className="visual-image" style={{ backgroundImage: `url("${story.image_url && story.image_url !== 'undefined' ? story.image_url : '/Ordalogo.png'}")` }}></div>
                     <div className="visual-overlay"></div>
                   </div>
                 </div>
