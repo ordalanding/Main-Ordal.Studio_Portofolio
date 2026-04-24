@@ -216,10 +216,12 @@ export default function Portfolio() {
                       </div>
                     </div>
                   </div>
-                  <div className="featured-visual reveal-on-scroll reveal-right" ref={addToRefs}>
-                    <div className="visual-image" style={{ backgroundImage: `url("${story.image_url && story.image_url !== 'undefined' ? story.image_url : '/Ordalogo.png'}")` }}></div>
-                    <div className="visual-overlay"></div>
-                  </div>
+                  {story && (
+                    <div className="featured-visual reveal-on-scroll reveal-right" ref={addToRefs}>
+                      <div className="visual-image" style={{ backgroundImage: `url("${story.image_url && story.image_url !== 'undefined' ? story.image_url : '/Ordalogo.png'}")` }}></div>
+                      <div className="visual-overlay"></div>
+                    </div>
+                  )}
                 </div>
               ))}
             </div>

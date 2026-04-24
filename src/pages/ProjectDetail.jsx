@@ -96,7 +96,7 @@ export default function ProjectDetail() {
     <div className="project-detail-page">
       {/* HERO SECTION */}
       <section className="detail-hero">
-        <div className="detail-hero-bg" style={{ backgroundImage: `url(${getImageUrl(project)})` }}></div>
+        <div className="detail-hero-bg" style={{ backgroundImage: `url("${getImageUrl(project)}")` }}></div>
         <div className="detail-hero-overlay"></div>
         
         <div className="container detail-hero-content">
@@ -374,7 +374,7 @@ export default function ProjectDetail() {
               <div className="marquee-wrapper">
                 <div className="marquee-track">
                   {/* Track 1: First Row - Duplicated to create endless loop */}
-                  {[...project.gallery_urls, ...project.gallery_urls, ...project.gallery_urls].map((url, index) => (
+                  {(project.gallery_urls || []).filter(url => url && url !== 'undefined').concat((project.gallery_urls || []).filter(url => url && url !== 'undefined')).concat((project.gallery_urls || []).filter(url => url && url !== 'undefined')).map((url, index) => (
                     <div 
                       key={`t1-${index}`} 
                       className="marquee-item" 
@@ -388,7 +388,7 @@ export default function ProjectDetail() {
                 
                 {/* Optional Track 2 (Offset or slightly faster) if there are many images */}
                 <div className="marquee-track track-offset">
-                  {[...project.gallery_urls, ...project.gallery_urls, ...project.gallery_urls].reverse().map((url, index) => (
+                  {[(...project.gallery_urls || []).filter(url => url && url !== 'undefined'), (...project.gallery_urls || []).filter(url => url && url !== 'undefined'), (...project.gallery_urls || []).filter(url => url && url !== 'undefined')].flat().reverse().map((url, index) => (
                     <div 
                       key={`t2-${index}`} 
                       className="marquee-item" 
