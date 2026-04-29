@@ -45,7 +45,7 @@ function WorkCard({ project }) {
 
   const getImageUrl = (project) => {
     if (!project) return '/Ordalogo.png';
-    const url = project.portfolio_image_url || project.image_url;
+    const url = project.image_url || project.portfolio_image_url;
     if (!url || url === 'undefined' || url === '' || url === 'null') return '/Ordalogo.png';
     return url;
   };
